@@ -164,3 +164,31 @@ code {
 	padding: 10px;
 	border: 1px solid green;
 }
+
+.conferencePage {
+	padding: 10px;
+}
+
+.conferenceHeaderImage {
+	padding: 10px;
+}	
+
+.conferenceImage {
+	padding: 10px;
+}
+
+.conferenceDetails {
+	padding: 10px;
+}
+
+.conferencePresentation {
+	padding: 10px;
+}
+
+.conferenceOrganisers {
+	padding: 10px;
+}
+
+.seePapersButton {
+	padding: 10px;
+}
