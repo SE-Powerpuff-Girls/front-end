@@ -1,102 +1,61 @@
-// function oneConference(){
-// 	return(
-// 		<div className="oneConference">
-// 			<div className="conferenceImage">
-// 				<p>Here comes a conference image</p>
-// 			</div>
-// 			<div className="conferenceDetails">
-// 				<p>Conference 1 Title</p>
-// 				<p>Location: Romania, Cluj Napoca</p>
-// 				<p>Date: 20.04.2022</p>
-// 				<div className = "topics">
-// 					<p>Topic 1</p>
-// 					<p>Topic 2</p>
-// 					<p>Topic 3</p>
-// 				</div>
-// 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-// 					Nunc et eros pretium, accumsan arcu non, fermentum ligula.
-// 					Maecenas volutpat, ligula et tristique congue, dolor enim
-// 					rhoncus nulla, vitae finibus eros lacus non erat.
-// 					gravida vehicula nibh, eget aliquet erat ullamcorper sed. </p>
-// 				<button id="seeMore">See More</button>
-// 			</div>
-// 		</div>
-// 	)
-//
-// }
+import React from 'react';
+import './Home.css';
+import Image from './home_background.jpg';
 
-const Home = () => {
-
-	return(
-		<div className="mainPage">
-			<div className="mainImage">
-				<p>Here comes the home image</p>
-			</div>
-			{/*<p>Conferences</p>*/}
-			<div className="conferencesList">
-				<div className="oneConference">
+class OneConference extends React.Component{
+	render(){
+		return (
+			<div className="oneConference">
 					<div className="conferenceImage">
-						<p>Here comes a conference image</p>
+						<img src={Image}/>
 					</div>
 					<div className="conferenceDetails">
-					<p>Conference 1 Title</p>
-					<p>Location: Romania, Cluj Napoca</p>
-					<p>Date: 20.04.2022</p>
+					<p>{this.props.conferenceTitle}</p>
 					<div className = "topics">
-						<p>Topic 1</p>
-						<p>Topic 2</p>
-						<p>Topic 3</p>
+						<p>{this.props.topic1}</p>
+						<p>{this.props.topic2}</p>
+						<p>{this.props.topic3}</p>
 					</div>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nunc et eros pretium, accumsan arcu non, fermentum ligula.
 						Maecenas volutpat, ligula et tristique congue, dolor enim
 						rhoncus nulla, vitae finibus eros lacus non erat.
-						gravida vehicula nibh, eget aliquet erat ullamcorper sed. </p>
-						<button id="seeMore">See More</button>
+						gravida vehicula nibh, eget aliquet erat ullamcorper sed. </p>						
+					</div>
+					<div className="conferenceMore">
+						<p>{this.props.conferenceDate}</p>
+						<p>{this.props.conferenceLocation}</p>
+						<button tpye="button" id="seeMoreHome">See More</button>
 					</div>
 				</div>
-				<div className="oneConference">
-					<div className="conferenceImage">
-						<p>Here comes a conference image</p>
-					</div>
-					<div className="conferenceDetails">
-						<p>Conference 2 Title</p>
-						<p>Location: Romania, Cluj Napoca</p>
-						<p>Date: 20.04.2022</p>
-						<div className = "topics">
-							<p>Topic 1</p>
-							<p>Topic 2</p>
-							<p>Topic 3</p>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Nunc et eros pretium, accumsan arcu non, fermentum ligula.
-							Maecenas volutpat, ligula et tristique congue, dolor enim
-							rhoncus nulla, vitae finibus eros lacus non erat.
-							gravida vehicula nibh, eget aliquet erat ullamcorper sed. </p>
-						<button id="seeMore">See More</button>
-					</div>
-				</div>
-				<div className="oneConference">
-					<div className="conferenceImage">
-						<p>Here comes a conference image</p>
-					</div>
-					<div className="conferenceDetails">
-						<p>Conference 3 Title</p>
-						<p>Location: Romania, Cluj Napoca</p>
-						<p>Date: 20.04.2022</p>
-						<div className = "topics">
-							<p>Topic 1</p>
-							<p>Topic 2</p>
-							<p>Topic 3</p>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Nunc et eros pretium, accumsan arcu non, fermentum ligula.
-							Maecenas volutpat, ligula et tristique congue, dolor enim
-							rhoncus nulla, vitae finibus eros lacus non erat.
-							gravida vehicula nibh, eget aliquet erat ullamcorper sed. </p>
-						<button id="seeMore">See More</button>
-					</div>
-				</div>
+		);
+	}
+}
+
+
+
+const Home = () => {
+
+	return(
+		<div className="mainPage">
+			{/* <div className="mainImage"> */}
+				{/* <img src={Image}/> */}
+			{/* </div> */}
+			<div className='intro'>
+				<h1>Conferences</h1>
+				<button tpye="button" id="introButtons">Topics</button>
+				<button tpye="button" id="introButtons">Location</button>
+			</div>
+			<div className="conferencesList" id="conferences">
+				<OneConference conferenceTitle="THE CONFERENCE" topic1="THE TOPIC" topic2="ANOTHER TOPIC"
+				topic3="WELL HELLO THERE" conferenceDate="Date: 20.04.2022" conferenceLocation="Location: Romania, Cluj Napoca"/>
+				
+				<OneConference conferenceTitle="THE CONFERENCE, PT. 2" topic1="Topic 1" topic2="Topic 2"
+				topic3="topic 3" conferenceDate="Date: 22.04.2022" conferenceLocation="Location: Romania, Brasov"/>
+				
+				<OneConference conferenceTitle="Melon Musk Ted Talk" topic1="Tesluh" topic2="Space Ex"
+				topic3="Memecoins" conferenceDate="Date: 30.06.2420" conferenceLocation="Location: Mars, Mars"/>
+			
 			</div>
 
 		</div>
