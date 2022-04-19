@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
 const Navbar = () => {
 	return (
-		<nav className="nav-bar">
-			<h1>Conference manager</h1>
-			<div className="links">
-				<Link to="/">Home</Link>
-				<Link to="/login">Login</Link>
-				<Link to="/register">Register</Link>
-				<Link to="/conferencePage">Conference Page</Link>
-			</div>
-		</nav>
+		<div className="navbar">
+			<h1>Powerpuff girls</h1>
+			<form className="form">
+				<input type="search" className="search-field"></input>
+				<button type="submit" className="search-button">
+					<img className="search-icon" src="/Img/searchIcon.webp" alt="search Icon"></img>
+				</button>
+			</form>
+			<nav>
+				<Link to="/" className="create-conference">
+					Create conference
+				</Link>
+				<Link to="/login" className="login-button">
+					Login
+				</Link>
+			</nav>
+		</div>
 	);
 };
 
