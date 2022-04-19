@@ -1,6 +1,4 @@
 import "./App.css";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
@@ -8,9 +6,8 @@ import Register from "./Register";
 
 function App() {
 	return (
-		<Router>
-			<div className="App">
-				<Navbar />
+		<div className="app">
+			<Router>
 				<div className="content">
 					<Routes>
 						<Route path="/" element={<Home />} />
@@ -18,9 +15,8 @@ function App() {
 						<Route path="/register" element={<Register />} />
 					</Routes>
 				</div>
-				<Footer />
-			</div>
-		</Router>
+			</Router>
+		</div>
 	);
 }
 
