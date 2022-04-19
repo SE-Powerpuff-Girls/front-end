@@ -145,7 +145,6 @@ body {
 	background-color: #c4c4c4;
 }
 
-
 .login-container form label,
 .login-container form a,
 .register-container form label {
@@ -159,9 +158,13 @@ body {
 	border: none;
 	border-radius: 10px;
 	background-color: #b40b0b;
+	padding: 15px;
+	color: white;
+}
 
 .content .login button,
-.register button, #seeMore {
+.register button,
+#seeMore {
 	width: 75px;
 	height: 30px;
 	border-radius: 25px;
@@ -169,7 +172,6 @@ body {
 	color: white;
 	padding: 15px;
 }
-
 
 .login-container form .lost-password {
 	padding-top: 15px;
@@ -220,40 +222,40 @@ body {
 }
 
 /*----------------------------------------------------------------------------------------- LOG IN, REGISTER */
-#seeMore{
+#seeMore {
 	margin: 10px;
 }
 
 .content .login button:hover,
-.register button:hover, #seeMore {
+.register button:hover,
+#seeMore {
 	box-shadow: 0px 0px 10px rgb(210, 150, 150);
 	color: black;
-
 }
 
-.mainPage{
+.mainPage {
 	border: 1px solid green;
 	width: 90%;
 	height: 100%;
 	padding: 10px;
 }
 
-.mainImage{
+.mainImage {
 	border: 1px solid yellow;
 	margin-bottom: 10px;
 }
 
-.conferencesList{
+.conferencesList {
 	border: 1px solid red;
 }
 
-.oneConference{
+.oneConference {
 	display: flex;
 	margin: 10px;
 	border-radius: 10px;
 }
 
-.topics p{
+.topics p {
 	background-color: gray;
 	border-radius: 10px;
 	display: inline-block;
@@ -261,12 +263,12 @@ body {
 	margin: 10px 10px 0;
 }
 
-.conferenceImage{
+.conferenceImage {
 	padding-top: 10px;
 	border: 1px solid blue;
 }
 
-.conferenceDetails{
+.conferenceDetails {
 	padding: 10px;
 	border: 1px solid green;
 }
@@ -277,7 +279,7 @@ body {
 
 .conferenceHeaderImage {
 	padding: 10px;
-}	
+}
 
 .conferenceImage {
 	padding: 10px;
@@ -298,4 +300,3 @@ body {
 .seePapersButton {
 	padding: 10px;
 }
-
