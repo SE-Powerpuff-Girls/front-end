@@ -123,6 +123,7 @@ code {
 .register button:hover, #seeMore {
 	box-shadow: 0px 0px 10px rgb(210, 150, 150);
 	color: black;
+
 }
 
 .mainPage{
@@ -192,3 +193,5 @@ code {
 .seePapersButton {
 	padding: 10px;
 }
+
+
