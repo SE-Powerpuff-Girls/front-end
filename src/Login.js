@@ -24,7 +24,7 @@ const Login = () => {
 					<Link to="/" className="lost-password">
 						Lost my password
 					</Link>
-					<button>Login</button>
+					<button type="submit">Login</button>
 				</form>
 				<Link to="/register" className="no-account">
 					I don't have an account

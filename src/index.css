@@ -182,7 +182,7 @@ body {
 
 .login-container .no-account {
 	align-self: center;
-	padding-top: 100px;
+	margin-top: 100px;
 	font-size: 10px;
 	color: #706fb4;
 }
@@ -217,11 +217,285 @@ body {
 .register-container .has-account {
 	text-align: center;
 	font-size: 10px;
-	padding-top: 10px;
+	margin-top: 10px;
 	color: #7472ce;
 }
 
 /*----------------------------------------------------------------------------------------- LOG IN, REGISTER */
+
+.conference-papers-page,
+.review-page {
+	background-color: #c4c4c4;
+	height: 100%;
+	overflow: scroll;
+	padding-bottom: 7%;
+}
+
+.one-paper {
+	font-weight: 500;
+	padding: 10px 20px 10px 20px;
+	background-color: white;
+}
+
+.paper-details {
+	width: 50%;
+}
+
+.paper-details h2 {
+	font-weight: normal;
+}
+
+.topics {
+	display: flex;
+}
+
+.topic {
+	font-size: 12px;
+	background-color: #e5e5e5;
+	font-weight: 400;
+	border-radius: 15px;
+	margin: 10px 15px 10px 0px;
+	padding: 3px 13px;
+}
+
+.paper-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 12px;
+}
+
+.paper-content h3 {
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+.paper-content button {
+	border: none;
+	border-radius: 15px;
+	background-color: #d40c0c;
+	font-size: 11px;
+	padding: 10px;
+	color: white;
+	margin: 2% 30% 0;
+}
+
+.paper-header {
+	display: flex;
+}
+
+.paper-authors {
+	display: flex;
+}
+
+.paper-authors span {
+	margin-right: 10px;
+}
+
+.paper-authors ul li {
+	list-style-type: none;
+}
+
+.conference-papers-thumbnail {
+	background-image: url("../public/Img/thumbnailConferencesPage.webp");
+	height: 50%;
+	background-size: cover;
+	background-position: 20%;
+	background-repeat: no-repeat;
+}
+
+.conference-details {
+	height: 35%;
+	margin: -6% 5% 0;
+	display: flex;
+	align-items: flex-end;
+}
+
+.conference-thumbnail {
+	background-image: url("../public/Img/thumbnailConference.jpg");
+	background-size: cover;
+	height: 100%;
+	width: 30%;
+	border: 1px solid white;
+	border-radius: 15px;
+}
+
+.conference-information {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 60%;
+	width: 100%;
+	padding: 0% 2%;
+}
+
+.conference-information .conference-identifiers {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding-right: 10%;
+	padding-top: 1%;
+}
+
+.conference-information .conference-identifiers .conference-title {
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.conference-information .conference-identifiers .conference-location {
+	color: gray;
+	font-size: 12px;
+}
+
+.conference-information .conference-identifiers .conference-date {
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.conference-information .topics .topic {
+	background-color: white;
+	padding: 2px 17px;
+}
+
+.conference-information .topics {
+	margin-top: -5px;
+}
+
+.conference-information .conference-url {
+	font-size: 12px;
+}
+
+.conference-papers {
+	margin: 1% 5%;
+}
+
+.conference-papers h3 {
+	font-size: 24px;
+	font-weight: 500;
+	margin: 2% 0%;
+}
+
+.available-papers {
+	display: grid;
+	grid-template-columns: auto auto;
+	row-gap: 10%;
+	column-gap: 5%;
+}
+
+.paper-title img {
+	width: 32px;
+	height: 32px;
+}
+
+.review-page .conference-papers-thumbnail {
+	height: 70%;
+}
+
+.review-page-content {
+	padding: 2% 1% 2% 6%;
+	display: flex;
+	column-gap: 2%;
+	width: 100%;
+}
+
+.review-page-content .paper-information {
+	width: 67.5%;
+}
+
+.review-page .review-paper #review-this-paper {
+	font-size: 28px;
+	font-weight: 600;
+}
+
+.review-page-content .paper-title {
+	display: flex;
+	font-size: 30px;
+	justify-content: space-between;
+	margin-bottom: 3%;
+}
+
+.review-page-content .paper-content {
+	background-color: white;
+	overflow: scroll;
+	min-height: 100%;
+}
+
+.review-page-content .review-paper,
+.review-page-content .finish-evaluation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	border-radius: 50px;
+	padding: 20px 35px;
+	row-gap: 35px;
+}
+
+.review-page .review-paper form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: auto;
+	height: 100%;
+	width: 100%;
+}
+
+.evaluate-paper {
+	margin-top: 2%;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	gap: 10%;
+}
+.evaluate-paper .review-paper div {
+	background-color: #c4c4c4;
+	width: 100%;
+	border: 2px solid gray;
+	border-radius: 15px;
+	height: 200px;
+	overflow: scroll;
+}
+
+.evaluate-paper .review-paper div ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+.evaluate-paper .review-paper div ul li {
+	text-indent: 5px;
+}
+
+.evaluate-paper .review-paper div::-webkit-scrollbar {
+	display: none;
+}
+
+.evaluate-paper .finish-evaluation button,
+.evaluate-paper .review-paper button {
+	background-color: #de0000;
+	border: none;
+	border-radius: 25px;
+	color: white;
+	width: 90%;
+	padding: 25px 25px;
+}
+
+.evaluate-paper .finish-evaluation span {
+	font-size: 25px;
+}
+.evaluate-paper .finish-evaluation {
+	row-gap: 50px;
+}
+
+.evaluate-paper .review-paper textarea {
+	width: 100%;
+	max-width: 100%;
+	background-color: #c4c4c4;
+	margin-bottom: 10%;
+	height: 100%;
+	min-height: 100px;
+}
+
 #seeMore {
 	margin: 10px;
 }

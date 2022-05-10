@@ -4,6 +4,8 @@ import Login from "./Login";
 import Home from "./Home";
 import Register from "./Register";
 import ConferencePage from "./ConferencePage";
+import ConferencePapers from "./ConferencePapers";
+import ReviewPage from "./ReviewPage";
 
 function App() {
 	return (
@@ -15,6 +17,8 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/conferencePage" element={<ConferencePage />} />
+						<Route path="/conferencePapers" element={<ConferencePapers />} />
+						<Route path="/reviewpage" element={<ReviewPage />}></Route>
 					</Routes>
 				</div>
 			</Router>
