@@ -25,7 +25,7 @@ class OneConference extends React.Component{
 					<div className="conferenceMore">
 						<p>{this.props.conferenceDate}</p>
 						<p>{this.props.conferenceLocation}</p>
-						<button tpye="button" id="seeMoreHome">See More</button>
+						<a href=""><button tpye="button" id="seeMoreHome">See More</button></a>
 					</div>
 				</div>
 		);
@@ -38,9 +38,6 @@ const Home = () => {
 
 	return(
 		<div className="mainPage">
-			{/* <div className="mainImage"> */}
-				{/* <img src={Image}/> */}
-			{/* </div> */}
 			<div className='intro'>
 				<h1>Conferences</h1>
 				<button tpye="button" id="introButtons">Topics</button>
