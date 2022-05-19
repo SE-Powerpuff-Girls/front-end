@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Register.module.css";
 import Navbar from "./Navbar";
 
 const Register = () => {
@@ -10,10 +11,10 @@ const Register = () => {
 	const [confirmPassword, setConfirmPassword] = useState();
 
 	return (
-		<div className="register-page">
+		<div className={styles["register-page"]}>
 			<Navbar />
 
-			<div className="register-container">
+			<div className={styles["register-container"]}>
 				<h2>Register</h2>
 				<form>
 					<label>Email</label>
@@ -36,7 +37,7 @@ const Register = () => {
 						required
 						value={confirmPassword}
 					></input>
-					<div className="checkbox-terms">
+					<div className={styles["checkbox-terms"]}>
 						<input type="checkbox" required></input>
 						<span>
 							I hereby agree to <Link to="/">terms and conditions</Link>
@@ -44,7 +45,7 @@ const Register = () => {
 					</div>
 					<button>Register</button>
 				</form>
-				<Link to="/login" className="has-account">
+				<Link to="/login" className={styles["has-account"]}>
 					I already have an account
 				</Link>
 			</div>

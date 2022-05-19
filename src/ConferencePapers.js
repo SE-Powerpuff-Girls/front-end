@@ -1,70 +1,76 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./ConferencePapers.module.css";
 import Navbar from "./Navbar";
 
-class OnePaper extends React.Component {
-	render() {
-		return (
-			<div className="one-paper">
-				<div className="paper-header">
-					<div className="paper-details">
-						<h2>Paper Title</h2>
-						<div className="topics">
-							<div className="topic">Topic 1</div>
-							<div className="topic">Topic 2</div>
-							<div className="topic">Topic 3</div>
-						</div>
-					</div>
-					<div className="paper-authors">
-						<span>Authors: </span>
-						<ul>
-							<li>Author 1</li>
-							<li>Author 2</li>
-							<li>Author 3</li>
-						</ul>
-					</div>
-				</div>
-				<div className="paper-content">
-					<h3>Abstract</h3>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus, quam ac porttitor efficitur, nisl eros finibus nisi, id fringilla
-						neque metus a mi. Morbi pulvinar risus felis, tempor viverra mi sagittis ut. Duis libero quam, cursus vel efficitur dictum, luctus vitae
-						mi. Suspendisse condimentum, nisl ornare eleifend euismod, lectus magna semper nisi, non posuere leo enim a leo. Cras finibus felis
-						tristique, euismod augue non, tincidunt ipsum. Donec fermentum scelerisque condimentum. Maecenas eu sem est.
-					</p>
-					<button>See more</button>
-				</div>
-			</div>
-		);
-	}
-}
-
-const conferencePapers = () => {
+const OnePaper = ({
+	topics = ["Default", "Topics"],
+	title = "Default title",
+	authors = ["Default", "Authors"],
+	content = "Some default content",
+}) => {
 	return (
-		<div className="conference-papers-page">
+		<div className={styles["one-paper"]}>
+			<div className={styles["paper-header"]}>
+				<div className={styles["paper-details"]}>
+					<h2>{title}</h2>
+					<div className={styles["topics"]}>
+						{topics.map((topic) => (
+							<div className={styles["topic"]}>{topic}</div>
+						))}
+					</div>
+				</div>
+				<div className={styles["paper-authors"]}>
+					<span>Authors: </span>
+					<ul>
+						{authors.map((author) => (
+							<li>{author}</li>
+						))}
+					</ul>
+				</div>
+			</div>
+			<div className={styles["paper-content"]}>
+				<h3>Abstract</h3>
+				<p>{content}</p>
+			</div>
+			<button className={styles["see-more-button"]}>See more</button>
+		</div>
+	);
+};
+
+const conferencePapers = ({
+	title = "Default title",
+	location = "Default location",
+	date = "Default date",
+	topics = ["Default", "Topics"],
+	url = "https://www.tomorrowtides.com/conference-name.html",
+}) => {
+	return (
+		<div className={styles["conference-papers-page"]}>
 			<Navbar></Navbar>
-			<div className="conference-papers-thumbnail"></div>
-			<div className="conference-details">
-				<div className="conference-thumbnail"></div>
-				<div className="conference-information">
-					<div className="conference-identifiers">
-						<span className="conference-title">Conference Title</span>
-						<span className="conference-location">Location: Romania, Cluj-Napoca, str. Eroilor, nr 102</span>
-						<span className="conference-date">Date: 22.05.2024</span>
+			<div className={styles["conference-papers-thumbnail"]}></div>
+			<div className={styles["conference-details"]}>
+				<div className={styles["conference-thumbnail"]}></div>
+				<div className={styles["conference-information"]}>
+					<div className={styles["conference-identifiers"]}>
+						<span className={styles["conference-title"]}>{title}</span>
+						<span className={styles["conference-location"]}>{location}</span>
+						<span className={styles["conference-date"]}>{date}</span>
 					</div>
-					<div className="topics">
-						<div className="topic">Topic 1</div>
-						<div className="topic">Topic 2</div>
-						<div className="topic">Topic 3</div>
+					<div className={styles["topics"]}>
+						{topics.map((topic) => (
+							<div className={styles["topic"]}>{topic}</div>
+						))}
 					</div>
-					<div className="conference-url">
-						<b>URL</b>: https://www.tomorrowtides.com/conference-name.html
+					<div className={styles["conference-url"]}>
+						<b>URL:</b>
+						{url}
 					</div>
 				</div>
 			</div>
-			<div className="conference-papers">
+			<div className={styles["conference-papers"]}>
 				<h3>Papers</h3>
-				<div className="available-papers">
+				<div className={styles["available-papers"]}>
 					<OnePaper></OnePaper>
 					<OnePaper></OnePaper>
 					<OnePaper></OnePaper>
