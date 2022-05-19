@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Login.module.css";
 import Navbar from "./Navbar";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	return (
-		<div className="login-page">
+		<div className={styles["login-page"]}>
 			<Navbar />
-			<div className="login-container">
+			<div className={styles["login-container"]}>
 				<h2>Login</h2>
 				<form>
 					<label>Email</label>
@@ -21,12 +22,12 @@ const Login = () => {
 						required
 						placeholder=" Enter your password..."
 					></input>
-					<Link to="/" className="lost-password">
+					<Link to="/" className={styles["lost-password"]}>
 						Lost my password
 					</Link>
 					<button type="submit">Login</button>
 				</form>
-				<Link to="/register" className="no-account">
+				<Link to="/register" className={styles["no-account"]}>
 					I don't have an account
 				</Link>
 			</div>

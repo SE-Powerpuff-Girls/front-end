@@ -1,0 +1,92 @@
+.register-page {
+	--button-background-color: #b40b0b;
+	--background-color-container: white;
+	--background-color-input: #c4c4c4;
+	--button-color: white;
+	--link-color: #706fb4;
+	--checkbox-terms-color: #4d4c83;
+	--background-image: url("../public/Img/Conferences.jpg");
+	background-image: var(--background-image);
+	background-size: cover;
+	height: 100% !important;
+	display: flex;
+	flex-direction: column;
+}
+
+.register-container {
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+	margin: auto 5%;
+	width: 30%;
+	background-color: var(--background-color-container);
+	border-radius: 25px;
+	padding: 20px 50px;
+}
+
+.register-container form {
+	display: flex;
+	flex-direction: column;
+	justify-items: flex-start;
+}
+
+.register-container form input {
+	border-radius: 9px;
+	padding: 10px;
+	border: none;
+	background-color: var(--background-color-input);
+}
+
+.register-container form label {
+	font-size: 12px;
+	padding: 5px;
+	justify-self: flex-start;
+}
+
+.register-container form button {
+	border: none;
+	border-radius: 10px;
+	background-color: var(--button-background-color);
+	padding: 15px;
+	color: var(--button-color);
+}
+
+.register button {
+	width: 75px;
+	height: 30px;
+	border-radius: 25px;
+	font-weight: bold;
+	color: var(--button-color);
+	padding: 15px;
+}
+
+.register-container h2 {
+	padding-bottom: 15px;
+	font-weight: normal;
+}
+
+.checkbox-terms {
+	display: flex;
+	padding: 10px 0 15px 5px;
+	font-size: 10px;
+}
+
+.checkbox-terms input {
+	align-self: center;
+}
+
+.checkbox-terms span {
+	padding-left: 5px;
+}
+
+.checkbox-terms a {
+	color: var(--checkbox-terms-color);
+}
+
+.has-account {
+	text-align: center;
+	font-size: 10px;
+	margin-top: 10px;
+	color: var(--link-color);
+}
