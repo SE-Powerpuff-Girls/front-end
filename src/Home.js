@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import './Home.css';
 import Image from './home_background.jpg';
 
@@ -16,6 +18,8 @@ class OneConference extends React.Component{
 						<p>{this.props.topic2}</p>
 						<p>{this.props.topic3}</p>
 					</div>
+					<br></br>
+					<h5>Description</h5>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nunc et eros pretium, accumsan arcu non, fermentum ligula.
 						Maecenas volutpat, ligula et tristique congue, dolor enim
@@ -38,10 +42,11 @@ const Home = () => {
 
 	return(
 		<div className="mainPage">
+			<Navbar />
 			<div className='intro'>
 				<h1>Conferences</h1>
 				<button tpye="button" id="introButtons">Topics</button>
-				<button tpye="button" id="introButtons">Location</button>
+				<button tpye="button" id="introButtons">Locations</button>
 			</div>
 			<div className="conferencesList" id="conferences">
 				<OneConference conferenceTitle="THE CONFERENCE" topic1="THE TOPIC" topic2="ANOTHER TOPIC"
@@ -54,7 +59,7 @@ const Home = () => {
 				topic3="Memecoins" conferenceDate="Date: 30.06.2420" conferenceLocation="Location: Mars, Mars"/>
 			
 			</div>
-
+			<Footer />
 		</div>
 	)
 };
