@@ -44,8 +44,24 @@
 	font-weight: normal;
 }
 
+.topics-see-more {
+	display: flex;
+	justify-content: space-between;
+}
+
 .topics {
 	display: flex;
+}
+
+.see-papers-button {
+	margin-right: 5%;
+	align-items: center;
+	background-color: #b40b0b;
+	color: white;
+	font-size: 16px;
+	padding: 15px 35px 15px 35px;
+	border: none;
+	border-radius: 20px;
 }
 
 .topic {
@@ -99,6 +115,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+	row-gap: 5%;
 	height: 60%;
 	width: 100%;
 	padding: 0% 2%;
@@ -149,6 +166,35 @@
 }
 
 .organizers-list {
+	margin-top: 2%;
 	display: flex;
 	justify-content: space-around;
+}
+
+.organizer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	background-color: white;
+	border-radius: 25px;
+	padding-bottom: 2%;
+}
+.organizer img {
+	margin-bottom: 5%;
+}
+
+.see-papers {
+	display: flex;
+	background-color: #b40b0b;
+	color: white;
+	font-size: 16px;
+	padding: 15px 35px 15px 35px;
+	border: none;
+	border-radius: 20px;
+	margin: 5% auto 3%;
+}
+
+.see-papers-button {
+	display: flex;
 }
