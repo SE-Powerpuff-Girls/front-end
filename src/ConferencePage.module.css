@@ -1,0 +1,154 @@
+.conference-page {
+	--button-color: #d40c0c;
+	--background-color-review-page: #c4c4c4;
+	--background-color-paper-topic: #e5e5e5;
+	--background-color-preview-topic: white;
+	--thumbnail-border-color: white;
+	--conference-location-color: gray;
+	background-color: var(--background-color-review-page);
+	height: 100%;
+	overflow: scroll;
+	padding-bottom: 7%;
+}
+
+.main-image {
+	background-image: url("../public/Img/thumbnailConferencesPage.webp");
+	height: 50%;
+	background-size: cover;
+	background-position: 20%;
+	background-repeat: no-repeat;
+}
+.conference-image {
+	background-image: url("../public/Img/thumbnailConference.jpg");
+	background-size: cover;
+	height: 100%;
+	width: 30%;
+	border: 1px solid var(--thumbnail-border-color);
+	border-radius: 15px;
+}
+
+.one-paper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-weight: 500;
+	padding: 10px 20px 10px 20px;
+	background-color: white;
+}
+
+.paper-details {
+	width: 50%;
+}
+
+.paper-details h2 {
+	font-weight: normal;
+}
+
+.topics {
+	display: flex;
+}
+
+.topic {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	background-color: var(--background-color-paper-topic);
+	font-weight: 400;
+	border-radius: 15px;
+	margin: 10px 15px 10px 0px;
+	padding: 3px 10px;
+}
+
+.paper-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	font-size: 12px;
+}
+
+.paper-content p {
+	display: block;
+}
+
+.paper-content h3 {
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+.see-more-button {
+	border: none;
+	border-radius: 15px;
+	background-color: var(--button-color);
+	width: 30%;
+	font-size: 11px;
+	padding: 10px;
+	color: white;
+	align-self: center;
+	margin-top: 2%;
+}
+
+.conference-details {
+	height: 35%;
+	margin: -6% 5% 0;
+	display: flex;
+	align-items: flex-end;
+}
+
+.conference-information {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 60%;
+	width: 100%;
+	padding: 0% 2%;
+}
+
+.conference-identifiers {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding-right: 10%;
+	padding-top: 1%;
+}
+
+.conference-title {
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.conference-location {
+	color: var(--conference-location-color);
+	font-size: 12px;
+}
+
+.conference-date {
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.conference-information .topics .topic {
+	background-color: var(--background-color-preview-topic);
+	padding: 2px 17px;
+}
+
+.conference-information .topics {
+	margin-top: -5px;
+}
+
+.conference-url {
+	font-size: 12px;
+}
+
+.conference-presentation {
+	margin: 1% 5%;
+}
+
+.conference-organizers {
+	margin: 1% 5%;
+}
+
+.organizers-list {
+	display: flex;
+	justify-content: space-around;
+}

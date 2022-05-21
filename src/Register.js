@@ -1,22 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import Navbar from "./Navbar";
 
 const Register = () => {
-	const [firstName, setFirstName] = useState();
-	const [lastName, setLastName] = useState();
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
-	const [confirmPassword, setConfirmPassword] = useState();
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (localStorage.getItem("token")) {
+			console.log(localStorage);
+			navigate("/");
+		}
+	});
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const user = { email, firstName, lastName, password, confirmPassword };
+		fetch(process.env.REACT_APP_API_LINK + "users/register", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(user),
+		}).then(() => {
+			navigate("/login");
+		});
+	};
 
 	return (
 		<div className={styles["register-page"]}>
 			<Navbar />
-
 			<div className={styles["register-container"]}>
 				<h2>Register</h2>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<label>Email</label>
 					<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder=" Email" required value={email}></input>
 
@@ -43,7 +64,9 @@ const Register = () => {
 							I hereby agree to <Link to="/">terms and conditions</Link>
 						</span>
 					</div>
-					<button>Register</button>
+					<button type="submit" value="Submit">
+						Register
+					</button>
 				</form>
 				<Link to="/login" className={styles["has-account"]}>
 					I already have an account
