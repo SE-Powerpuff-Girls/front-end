@@ -10,11 +10,9 @@ const Login = () => {
 	const [failedLogin, setFailedLogin] = useState(false);
 
 	const navigate = useNavigate();
-	// localStorage.clear();
 
 	useEffect(() => {
 		if (localStorage.getItem("token")) {
-			console.log(localStorage);
 			navigate("/");
 		}
 	});
@@ -34,16 +32,14 @@ const Login = () => {
 					.json()
 					.then((data) => {
 						localStorage.setItem("token", data.token);
-						localStorage.setItem("user", data.output);
-						localStorage.setItem("isLoggedIn");
+						localStorage.setItem("user", JSON.stringify(data.output));
 					})
-					.then(() => navigate("/theoretically-logged-in"));
+					.then(() => navigate(`/profilePage/:${JSON.parse(localStorage.getItem("user")).userid}`));
 			} else {
 				response
 					.json()
-					.then((data) => {
+					.then(() => {
 						setFailedLogin(true);
-						console.log(data);
 						setEmail("");
 						setPassword("");
 					})

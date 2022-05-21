@@ -28,7 +28,7 @@ const Register = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(user),
 		}).then(() => {
-			navigate("/login");
+			navigate("/");
 		});
 	};
 

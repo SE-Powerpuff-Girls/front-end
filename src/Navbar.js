@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(() => {
 		const token = localStorage.getItem("token");
-		console.log(token);
+		console.log(token === undefined);
 		return !(token === undefined || token === null);
 	});
-
+	const navigate = useNavigate();
+	const handleLogOut = (e) => {
+		e.preventDefault();
+		localStorage.clear();
+		navigate("/login");
+	};
 	return (
 		<div className={styles["navbar"]}>
 			<h1>Powerpuff girls</h1>
@@ -27,9 +33,14 @@ const Navbar = () => {
 					</Link>
 				)}
 				{isLoggedIn && (
-					<Link to={`/profilePage/:1`} className={styles["login-button"]}>
-						Profile
+					<Link to={`/profilePage/${JSON.parse(localStorage.getItem("user")).userid}`} className={styles["login-button"]}>
+						{JSON.parse(localStorage.getItem("user")).firstname}
 					</Link>
+				)}
+				{isLoggedIn && (
+					<button className={styles["logout-button"]} onClick={handleLogOut}>
+						Logout
+					</button>
 				)}
 			</nav>
 		</div>
