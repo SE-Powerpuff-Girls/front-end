@@ -1,0 +1,11 @@
+.footer {
+	background-color: rgb(61, 60, 60);
+	color: white;
+
+	height: 15%;
+}
+
+.information a {
+	color: white;
+	text-decoration: none;
+}

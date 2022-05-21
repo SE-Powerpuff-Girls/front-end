@@ -1,8 +1,10 @@
+import styles from "./Footer.module.css";
+
 const Footer = () => {
 	return (
-		<footer className="footer">
+		<footer className={styles["footer"]}>
 			<p>Copyright</p>
-			<div className="information">
+			<div className={styles["information"]}>
 				<a href="">Contact</a>
 				<a href="">About us</a>
 			</div>
