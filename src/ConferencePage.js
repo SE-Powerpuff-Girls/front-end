@@ -21,7 +21,7 @@ const ConferencePage = () => {
 							<div className={styles["topic"]}>Topic 1</div>
 							<div className={styles["topic"]}>Topic 1</div>
 						</div>
-						<button className={styles["see-papers-button"]}>See Papers</button>
+						<button className={styles["button-style"]}>See Papers</button>
 					</div>
 					<div className={styles["conference-url"]}>
 						<b>URL:</b>
@@ -39,28 +39,74 @@ const ConferencePage = () => {
 					this morning and we need to better nor optimize the fireball. Increase the resolution, scale it up we need a larger print.
 				</p>
 			</div>
-			<div className={styles["conference-organizers"]}>
-				<h2>Organizers</h2>
-				<div className={styles["organizers-list"]}>
-					<div className={styles["organizer"]}>
-						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
-						Organiser 1
+
+			<div className={styles["available-sessions"]}>
+				<h1>Available Sessions</h1>
+				<div className={styles["sessions"]}>
+					<div className={styles["session-card"]}>
+						<p><b>Session 1</b></p>
+						<p>Description of Session 1</p>
 					</div>
-					<div className={styles["organizer"]}>
-						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
-						Organiser 2
+					<div className={styles["session-card"]}>
+						<p><b>Session 2</b></p>
+						<p>Description of Session 2</p>
 					</div>
-					<div className={styles["organizer"]}>
-						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
-						Organiser 3
+					<div className={styles["session-card"]}>
+						<p><b>Session 3</b></p>
+						<p>Description of Session 3</p>
 					</div>
-					<div className={styles["organizer"]}>
-						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
-						Organiser 4
+					<div className={styles["session-card"]}>
+						<p><b>Session 4</b></p>
+						<p>Description of Session 4</p>
 					</div>
 				</div>
 			</div>
-			<button className={styles["see-papers"]}>See papers</button>
+
+			<div className={styles["conference-chairs"]}>
+				<h1>Chairs</h1>
+				<div className={styles["chairs-list"]}>
+					<div className={styles["chair"]}>
+						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
+						Chair 1
+					</div>
+					<div className={styles["chair"]}>
+						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
+						Chair 2
+					</div>
+					<div className={styles["chair"]}>
+						<img src={`${process.env.PUBLIC_URL}/Img/profilePicture.png`}></img>
+						Chair 3
+					</div>
+				</div>
+			</div>
+			
+			{/* only for registered user 
+				author - their own papers
+				reviewer - papers to review
+			*/}
+			<div className={styles["focused-papers"]}>
+
+			</div>
+
+			{/* only for registered user 
+				author - public papers (accepted papers)
+				reviewer + chairs - all papers
+			*/}
+			<div className={styles["all-papers"]}>
+
+			</div>
+
+			<div className={styles["action-buttons"]}>
+				{/* only for registered user - author only */}
+				<button className={styles["button-style"]}>Add Paper</button>
+
+				{/* only for registered user - chair only */}
+				<button className={styles["button-style"]}>Edit Conference</button>
+
+				{/* only for UNREGISTERED user */}
+				<button className={styles["button-style"]}>Register</button>
+			</div>
+			 
 			<Footer />
 		</div>
 	);

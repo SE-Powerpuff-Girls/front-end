@@ -17,6 +17,7 @@
 	background-position: 20%;
 	background-repeat: no-repeat;
 }
+
 .conference-image {
 	background-image: url("../public/Img/thumbnailConference.jpg");
 	background-size: cover;
@@ -50,17 +51,6 @@
 
 .topics {
 	display: flex;
-}
-
-.see-papers-button {
-	margin-right: 5%;
-	align-items: center;
-	background-color: #b40b0b;
-	color: white;
-	font-size: 16px;
-	padding: 15px 35px 15px 35px;
-	border: none;
-	border-radius: 20px;
 }
 
 .topic {
@@ -160,17 +150,38 @@
 	margin: 1% 5%;
 }
 
-.conference-organizers {
+.available-sessions {
 	margin: 1% 5%;
 }
 
-.organizers-list {
+.sessions {
 	margin-top: 2%;
 	display: flex;
 	justify-content: space-around;
 }
 
-.organizer {
+.session-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	background-color: #b40b0b;
+	color: white;
+	border-radius: 25px;
+	padding: 2%;
+}
+
+.conference-chairs {
+	margin: 1% 5%;
+}
+
+.chairs-list {
+	margin-top: 2%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.chair {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -179,21 +190,25 @@
 	border-radius: 25px;
 	padding-bottom: 2%;
 }
-.organizer img {
+
+.chair img {
 	margin-bottom: 5%;
 }
 
-.see-papers {
+.action-buttons {
+	margin-top: 2%;
 	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.button-style {
+	visibility: visible;
+	align-items: center;
 	background-color: #b40b0b;
 	color: white;
 	font-size: 16px;
 	padding: 15px 35px 15px 35px;
 	border: none;
 	border-radius: 20px;
-	margin: 5% auto 3%;
-}
-
-.see-papers-button {
-	display: flex;
 }
