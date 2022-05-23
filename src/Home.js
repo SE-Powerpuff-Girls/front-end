@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 
 class OneConference extends React.Component {
 	render() {
+		const confTopics = this.props.topics.map((topic) => {
+			return <p>topic</p>
+		});
 		return (
 			<div className={styles["oneConference"]}>
 				<div className={styles["conferenceImage"]}>
@@ -17,9 +20,10 @@ class OneConference extends React.Component {
 				<div className={styles["conferenceDetails"]}>
 					<p>{this.props.conferenceTitle}</p>
 					<div className={styles["topics"]}>
-						<p>{this.props.topic1}</p>
+						{confTopics}
+						{/* <p>{this.props.topic1}</p>
 						<p>{this.props.topic2}</p>
-						<p>{this.props.topic3}</p>
+						<p>{this.props.topic3}</p> */}
 					</div>
 					<br></br>
 					<h5>Description</h5>
@@ -39,9 +43,32 @@ class OneConference extends React.Component {
 	}
 }
 
+function getConfTopics(confId){
+	useEffect(() => {
+		if (!readDataTopics){
+			setReadDataTopics(true);
+			fetch(process.env.REACT_APP_API_LINK + `conferences/${confId}/topics`, {
+				method: "GET",
+				headers: { "Content-Type": "application/json" }
+			}).then((Response) => {
+				if(Response.status == 200){
+					Response.json().then((data) => {
+						console.log(data);
+						setconferenceTopics(data);
+					})
+				}
+			})
+		}
+	}, [readDataTopics, confId]);
+
+}
+
 const Home = () => {
 	const [conferences, setConferences] = useState([]);
+	const [conferenceTopics, setconferenceTopics] = useState([]);
 	const [readData, setReadData] = useState(false);
+	const [readDataTopics, setReadDataTopics] = useState(false);
+
 
 	useEffect(() => {
 		if (!readData) {
@@ -72,15 +99,36 @@ const Home = () => {
 				</button>
 			</div>
 			<div className={styles["conferencesList"]} id={styles["conferences"]}>
-				{conferences.map((conference) => {
+				{conferences.map(async (conference) => {
+					
+					// Get all topics for the current conference
+					let confId = conference.conferenceid;
+					let confTopics = getConfTopics(confId);
+					// useEffect(() => {
+					// 	if (!readDataTopics){
+					// 		setReadDataTopics(true);
+					// 		fetch(process.env.REACT_APP_API_LINK + `conferences/${confId}/topics`, {
+					// 			method: "GET",
+					// 			headers: { "Content-Type": "application/json" }
+					// 		}).then((Response) => {
+					// 			if(Response.status == 200){
+					// 				Response.json().then((data) => {
+					// 					console.log(data);
+					// 					setconferenceTopics(data);
+					// 				})
+					// 			}
+					// 		})
+					// 	}
+					// }, [readDataTopics, confId]);
+
+					
+					/// Create the conference
 					return (
 						<OneConference
 							conferenceTitle={conference.name}
-							topic1="Topic 1"
-							topic2="Topic 2"
-							topic3="Topic 3"
+							topics = {conferenceTopics}
 							description={conference.subtitles}
-							conferenceDate="Date: 20.04.2022"
+							conferenceDate="Date: 24.05.2022"
 							conferenceLocation="Location: Romania, Cluj Napoca"
 							link={`conferencepage/:${conference.conferenceid}`}
 						/>
