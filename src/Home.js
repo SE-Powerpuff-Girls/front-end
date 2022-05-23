@@ -24,16 +24,12 @@ class OneConference extends React.Component {
 					</div>
 					<br></br>
 					<h5>Description</h5>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et eros pretium, accumsan arcu non, fermentum ligula. Maecenas volutpat,
-						ligula et tristique congue, dolor enim rhoncus nulla, vitae finibus eros lacus non erat. gravida vehicula nibh, eget aliquet erat
-						ullamcorper sed.{" "}
-					</p>
+					<p>{this.props.description}</p>
 				</div>
 				<div className={styles["conferenceMore"]}>
 					<p>{this.props.conferenceDate}</p>
 					<p>{this.props.conferenceLocation}</p>
-					<a href="">
+					<a href={this.props.link}>
 						<button type="button" id={styles["seeMoreHome"]}>
 							See More
 						</button>
@@ -59,18 +55,12 @@ const Home = () => {
 			}).then((Response) => {
 				if (Response.status == 200){
 					Response.json().then((data) => {
-						console.log("DATA - ");
-						console.log(data);
 						setConferences(data);
-						console.log("CONFERENCES - ");
-						console.log(conferences);
 					})
 				}
 			});
 		}
 	}, [readData])
-
-
 
 	return (
 		<div className={styles["mainPage"]}>
@@ -85,32 +75,21 @@ const Home = () => {
 				</button>
 			</div>
 			<div className={styles["conferencesList"]} id={styles["conferences"]}>
-				<OneConference
-					conferenceTitle="THE CONFERENCE"
-					topic1="THE TOPIC"
-					topic2="ANOTHER TOPIC"
-					topic3="WELL HELLO THERE"
-					conferenceDate="Date: 20.04.2022"
-					conferenceLocation="Location: Romania, Cluj Napoca"
-				/>
-
-				<OneConference
-					conferenceTitle="THE CONFERENCE, PT. 2"
-					topic1="Topic 1"
-					topic2="Topic 2"
-					topic3="topic 3"
-					conferenceDate="Date: 22.04.2022"
-					conferenceLocation="Location: Romania, Brasov"
-				/>
-
-				<OneConference
-					conferenceTitle="Melon Musk Ted Talk"
-					topic1="Tesluh"
-					topic2="Space Ex"
-					topic3="Memecoins"
-					conferenceDate="Date: 30.06.2420"
-					conferenceLocation="Location: Mars, Mars"
-				/>
+				{
+					conferences.map(conference => {
+						return (
+							<OneConference 
+							conferenceTitle = {conference.name}
+							topic1="Topic 1"
+							topic2="Topic 2"
+							topic3="Topic 3"
+							description = {conference.subtitles}
+							conferenceDate="Date: 20.04.2022"
+							conferenceLocation="Location: Romania, Cluj Napoca"
+							link = {conference.url}/>
+						)
+					})
+				}
 			</div>
 			<Footer />
 		</div>
