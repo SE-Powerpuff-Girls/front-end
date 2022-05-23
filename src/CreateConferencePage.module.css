@@ -1,0 +1,67 @@
+.conference-page {
+	--button-color: #d40c0c;
+	--background-color-review-page: #c4c4c4;
+	--background-color-paper-topic: #e5e5e5;
+	--background-color-preview-topic: white;
+	--thumbnail-border-color: white;
+	--conference-location-color: gray;
+	background-color: var(--background-color-review-page);
+	height: 100%;
+	overflow: scroll;
+}
+
+.conference-papers-thumbnail {
+	background-image: url("../public/Img/thumbnailConferencesPage.webp");
+	height: 50%;
+	background-size: cover;
+	background-position: 20%;
+	background-repeat: no-repeat;
+}
+
+.create-conference-container {
+	height: 100%;
+	background-color: white;
+	display: flex;
+	padding: 5% 10%;
+}
+
+.create-conference-form {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	row-gap: 5%;
+}
+
+.lable-input {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: fit-content;
+}
+
+.lable-input input,
+.lable-input textarea {
+	border-radius: 15px;
+	padding: 5px 10px;
+	width: 80%;
+	max-width: 80%;
+}
+
+.lable-input textarea {
+	min-width: 80%;
+	min-height: 50px;
+}
+
+.lable-input textarea::-webkit-scrollbar {
+	display: none;
+}
+
+.submit-button {
+	margin: auto;
+	border-radius: 25px;
+	padding: 15px 30px;
+	border: none;
+	font-weight: bold;
+	color: white;
+	background-color: var(--button-color);
+}

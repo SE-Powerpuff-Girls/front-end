@@ -8,6 +8,7 @@ import ConferencePage from "./ConferencePage";
 import ConferencePapers from "./ConferencePapers";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
+import CreateConferencePage from "./CreateConferencePage";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 						<Route path="/conferencePapers" element={<ConferencePapers />} />
 						<Route path="/reviewpage" element={<ReviewPage />}></Route>
 						<Route path="/profilepage/:id" element={<ProfilePage />}></Route>
+						<Route path="/createconferencepage/" element={<CreateConferencePage />}></Route>
 					</Routes>
 				</div>
 			</Router>

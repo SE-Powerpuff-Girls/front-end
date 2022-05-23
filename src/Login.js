@@ -26,7 +26,7 @@ const Login = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(user),
 		}).then((response) => {
-			if (response.status === 200) {
+			if (response.status === 201) {
 				setFailedLogin(false);
 				response
 					.json()
