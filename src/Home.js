@@ -5,6 +5,9 @@ import "./Home.css";
 import Image from "./home_background.jpg";
 import styles from "./Home.module.css";
 
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 class OneConference extends React.Component {
 	render() {
 		return (
@@ -42,6 +45,33 @@ class OneConference extends React.Component {
 }
 
 const Home = () => {
+
+	const [conferences, setConferences] = useState([]);
+	const [readData, setReadData] = useState(false);
+
+
+	useEffect(() => {
+		if (!readData){
+			setReadData(true);
+			fetch(process.env.REACT_APP_API_LINK + "conferences/", {
+				method: "GET",
+				headers: { "Content-Type": "application/json" }
+			}).then((Response) => {
+				if (Response.status == 200){
+					Response.json().then((data) => {
+						console.log("DATA - ");
+						console.log(data);
+						setConferences(data);
+						console.log("CONFERENCES - ");
+						console.log(conferences);
+					})
+				}
+			});
+		}
+	}, [readData])
+
+
+
 	return (
 		<div className={styles["mainPage"]}>
 			<Navbar />
