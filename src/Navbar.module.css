@@ -11,9 +11,11 @@
 	max-width: 100%;
 	padding: 15px 30px;
 }
-.navbar h1 {
+.navbar a {
 	font-size: 16px;
 	font-weight: normal;
+	text-decoration: none;
+	color: black;
 }
 
 .form {

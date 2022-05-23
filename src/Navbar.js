@@ -24,7 +24,7 @@ const Navbar = () => {
 	};
 	return (
 		<div className={styles["navbar"]}>
-			<h1>Powerpuff girls</h1>
+			<Link to="/">Powerpuff girls</Link>
 			<form className={styles["form"]}>
 				<input type="search" className={styles["search-field"]}></input>
 				<button type="submit" className={styles["search-button"]}>
