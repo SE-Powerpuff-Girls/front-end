@@ -1,11 +1,10 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import "./Home.css";
 import Image from "./home_background.jpg";
 import styles from "./Home.module.css";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 class OneConference extends React.Component {
@@ -29,11 +28,11 @@ class OneConference extends React.Component {
 				<div className={styles["conferenceMore"]}>
 					<p>{this.props.conferenceDate}</p>
 					<p>{this.props.conferenceLocation}</p>
-					<a href={this.props.link}>
+					<Link to={this.props.link}>
 						<button type="button" id={styles["seeMoreHome"]}>
 							See More
 						</button>
-					</a>
+					</Link>
 				</div>
 			</div>
 		);
@@ -41,26 +40,24 @@ class OneConference extends React.Component {
 }
 
 const Home = () => {
-
 	const [conferences, setConferences] = useState([]);
 	const [readData, setReadData] = useState(false);
 
-
 	useEffect(() => {
-		if (!readData){
+		if (!readData) {
 			setReadData(true);
 			fetch(process.env.REACT_APP_API_LINK + "conferences/", {
 				method: "GET",
-				headers: { "Content-Type": "application/json" }
+				headers: { "Content-Type": "application/json" },
 			}).then((Response) => {
-				if (Response.status == 200){
+				if (Response.status == 200) {
 					Response.json().then((data) => {
 						setConferences(data);
-					})
+					});
 				}
 			});
 		}
-	}, [readData])
+	}, [readData]);
 
 	return (
 		<div className={styles["mainPage"]}>
@@ -75,21 +72,20 @@ const Home = () => {
 				</button>
 			</div>
 			<div className={styles["conferencesList"]} id={styles["conferences"]}>
-				{
-					conferences.map(conference => {
-						return (
-							<OneConference 
-							conferenceTitle = {conference.name}
+				{conferences.map((conference) => {
+					return (
+						<OneConference
+							conferenceTitle={conference.name}
 							topic1="Topic 1"
 							topic2="Topic 2"
 							topic3="Topic 3"
-							description = {conference.subtitles}
+							description={conference.subtitles}
 							conferenceDate="Date: 20.04.2022"
 							conferenceLocation="Location: Romania, Cluj Napoca"
-							link = {conference.url}/>
-						)
-					})
-				}
+							link={`conferencepage/:${conference.conferenceid}`}
+						/>
+					);
+				})}
 			</div>
 			<Footer />
 		</div>

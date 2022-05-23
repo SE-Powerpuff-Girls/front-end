@@ -1,5 +1,4 @@
 import "./App.css";
-import "./Home.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
@@ -19,7 +18,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
-						<Route path="/conferencePage" element={<ConferencePage />} />
+						<Route path="/conferencepage/:id" element={<ConferencePage />} />
 						<Route path="/conferencePapers" element={<ConferencePapers />} />
 						<Route path="/reviewpage" element={<ReviewPage />}></Route>
 						<Route path="/profilepage/:id" element={<ProfilePage />}></Route>
