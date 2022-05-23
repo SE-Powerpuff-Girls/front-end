@@ -56,8 +56,16 @@
 	text-decoration: none;
 }
 
+.navbar nav button:hover {
+	cursor: pointer;
+}
+
 .create-conference {
 	color: black;
+	margin: 0px 15px;
+	border: none;
+	background-color: transparent;
+	font-size: 16px;
 }
 
 .navbar nav .login-button {

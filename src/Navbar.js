@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(() => {
 		const token = localStorage.getItem("token");
-		console.log(token === undefined);
 		return !(token === undefined || token === null);
 	});
 	const navigate = useNavigate();
@@ -13,6 +12,15 @@ const Navbar = () => {
 		e.preventDefault();
 		localStorage.clear();
 		navigate("/login");
+	};
+
+	const handleCreateConference = (e) => {
+		e.preventDefault();
+		if (isLoggedIn) {
+			navigate("/createconferencepage");
+		} else {
+			navigate("/login");
+		}
 	};
 	return (
 		<div className={styles["navbar"]}>
@@ -24,9 +32,9 @@ const Navbar = () => {
 				</button>
 			</form>
 			<nav>
-				<Link to="/" className={styles["create-conference"]}>
+				<button onClick={handleCreateConference} className={styles["create-conference"]}>
 					Create conference
-				</Link>
+				</button>
 				{!isLoggedIn && (
 					<Link to="/login" className={styles["login-button"]}>
 						Login
