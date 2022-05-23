@@ -73,7 +73,7 @@ const ProfilePage = () => {
 				.finally(() => {
 					setLoading(false);
 				});
-			fetch(`${process.env.REACT_APP_API_LINK}users/${id}/topics`, {
+			fetch(`${process.env.REACT_APP_API_LINK}users/:${id}/topics`, {
 				method: "GET",
 				headers: { "Content-Type": "application/json" },
 			}).then((response) => {
@@ -84,7 +84,7 @@ const ProfilePage = () => {
 				}
 			});
 		}
-	}, [rendModal, readData]);
+	}, [rendModal, readData, id]);
 
 	if (loading) {
 		return "Loading...";
@@ -198,19 +198,23 @@ const ProfilePage = () => {
 								{topics.map((topic) => (
 									<div className={styles["tag"]}>
 										{topic.name}
-										<span
-											onClick={(e) => {
-												e.preventDefault();
-												handleDeleteTopic(topic.usertopicid);
-											}}
-										>
-											X
-										</span>
+										{!disabled && (
+											<span
+												onClick={(e) => {
+													e.preventDefault();
+													handleDeleteTopic(topic.usertopicid);
+												}}
+											>
+												X
+											</span>
+										)}
 									</div>
 								))}
-								<div onClick={handleRendModal} className={styles["tag"]}>
-									+
-								</div>
+								{!disabled && (
+									<div onClick={handleRendModal} className={styles["tag"]}>
+										+
+									</div>
+								)}
 							</div>
 						</div>
 					</div>

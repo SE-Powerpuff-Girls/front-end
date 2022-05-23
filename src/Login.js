@@ -34,7 +34,7 @@ const Login = () => {
 						localStorage.setItem("token", data.token);
 						localStorage.setItem("user", JSON.stringify(data.output));
 					})
-					.then(() => navigate(`/profilePage/:${JSON.parse(localStorage.getItem("user")).userid}`));
+					.then(() => navigate(`/profilePage/${JSON.parse(localStorage.getItem("user")).userid}`));
 			} else {
 				response
 					.json()

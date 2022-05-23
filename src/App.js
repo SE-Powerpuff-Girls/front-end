@@ -5,9 +5,10 @@ import Home from "./Home";
 import Register from "./Register";
 import ConferencePage from "./ConferencePage";
 import ConferencePapers from "./ConferencePapers";
-import ReviewPage from "./ReviewPage";
+import ViewPaper from "./ViewPaper";
 import ProfilePage from "./ProfilePage";
 import CreateConferencePage from "./CreateConferencePage";
+import ReviewPaperVersion from "./ReviewPaperVersion";
 
 function App() {
 	return (
@@ -20,9 +21,10 @@ function App() {
 						<Route path="/register" element={<Register />} />
 						<Route path="/conferencepage/:id" element={<ConferencePage />} />
 						<Route path="/conferencePapers" element={<ConferencePapers />} />
-						<Route path="/reviewpage" element={<ReviewPage />}></Route>
+						<Route path="/reviewpaperversion" element={<ReviewPaperVersion />}></Route>
 						<Route path="/profilepage/:id" element={<ProfilePage />}></Route>
 						<Route path="/createconferencepage/" element={<CreateConferencePage />}></Route>
+						<Route path="/viewpaper/:id" element={<ViewPaper />}></Route>
 					</Routes>
 				</div>
 			</Router>
