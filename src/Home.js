@@ -4,60 +4,114 @@ import Footer from "./Footer";
 import Image from "./home_background.jpg";
 import styles from "./Home.module.css";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-class OneConference extends React.Component {
-	render() {
-		return (
-			<div className={styles["oneConference"]}>
-				<div className={styles["conferenceImage"]}>
-					<img src={Image} />
-				</div>
-				<div className={styles["conferenceDetails"]}>
-					<p>{this.props.conferenceTitle}</p>
-					<div className={styles["topics"]}>
-						<p>{this.props.topic1}</p>
-						<p>{this.props.topic2}</p>
-						<p>{this.props.topic3}</p>
-					</div>
-					<br></br>
-					<h5>Description</h5>
-					<p>{this.props.description}</p>
-				</div>
-				<div className={styles["conferenceMore"]}>
-					<p>{this.props.conferenceDate}</p>
-					<p>{this.props.conferenceLocation}</p>
-					<Link to={this.props.link}>
-						<button type="button" id={styles["seeMoreHome"]}>
-							See More
-						</button>
-					</Link>
-				</div>
-			</div>
-		);
+const OneConference = ({ conference }) => {
+	const [topics, setTopics] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(false);
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		fetch(`${process.env.REACT_APP_API_LINK}conferences/${conference.conferenceid}/topics`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				}
+				throw response;
+			})
+			.then((data) => {
+				setTopics(data);
+			})
+			.catch((error) => {
+				console.log("Error fetching data: ", error);
+				setError(true);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, []);
+
+	const handleSeeMore = (e) => {
+		e.preventDefault();
+		navigate(`/conferencepage/:${conference.conferenceid}`);
+	};
+
+	if (isLoading) {
+		return "Loading";
 	}
-}
+	if (error) {
+		return "Error";
+	}
+	return (
+		<div className={styles["oneConference"]}>
+			<div className={styles["conferenceImage"]}>
+				<img src={Image} />
+			</div>
+			<div className={styles["conferenceDetails"]}>
+				<p>{conference.name}</p>
+				<div className={styles["topics"]}>
+					{topics.map((topic) => (
+						<p key={topic.conferencetopicid} className={styles["topic"]}>
+							{topic.text}
+						</p>
+					))}
+				</div>
+				<br></br>
+				<h5>Description</h5>
+				<p>{conference.subtitles}</p>
+			</div>
+			<div className={styles["conferenceMore"]}>
+				<p>{`Date: 20.04.2022`}</p>
+				<p>{`Location: Romania, Cluj-Napoca`}</p>
+				<button type="button" onClick={handleSeeMore} id={styles["seeMoreHome"]}>
+					See More
+				</button>
+			</div>
+		</div>
+	);
+};
 
 const Home = () => {
 	const [conferences, setConferences] = useState([]);
-	const [readData, setReadData] = useState(false);
+
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		if (!readData) {
-			setReadData(true);
-			fetch(process.env.REACT_APP_API_LINK + "conferences/", {
-				method: "GET",
-				headers: { "Content-Type": "application/json" },
-			}).then((Response) => {
-				if (Response.status == 200) {
-					Response.json().then((data) => {
-						setConferences(data);
-					});
+		fetch(process.env.REACT_APP_API_LINK + "conferences/", {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
 				}
+				throw response;
+			})
+			.then((data) => {
+				setConferences(data);
+			})
+			.catch((error) => {
+				console.log("Error fetching data: ", error);
+				setError(true);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
-		}
-	}, [readData]);
+	}, []);
+
+	if (isLoading) {
+		return "Loading";
+	}
+	if (error) {
+		return "Error";
+	}
 
 	return (
 		<div className={styles["mainPage"]}>
@@ -73,18 +127,7 @@ const Home = () => {
 			</div>
 			<div className={styles["conferencesList"]} id={styles["conferences"]}>
 				{conferences.map((conference) => {
-					return (
-						<OneConference
-							conferenceTitle={conference.name}
-							topic1="Topic 1"
-							topic2="Topic 2"
-							topic3="Topic 3"
-							description={conference.subtitles}
-							conferenceDate="Date: 20.04.2022"
-							conferenceLocation="Location: Romania, Cluj Napoca"
-							link={`conferencepage/:${conference.conferenceid}`}
-						/>
-					);
+					return <OneConference key={conference.conferenceid} conference={conference} />;
 				})}
 			</div>
 			<Footer />

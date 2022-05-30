@@ -1,36 +1,54 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import Navbar from "./Navbar";
 
 const Register = () => {
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const [user, setUser] = useState({ email: "", password: "", firstName: "", lastName: "", confirmPassword: "" });
 
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (localStorage.getItem("token")) {
-			console.log(localStorage);
-			navigate("/");
-		}
-	});
+	const [error, setError] = useState(false);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const user = { email, firstName, lastName, password, confirmPassword };
+	// useEffect(() => {
+	// 	if (localStorage.getItem("token")) {
+	// 		console.log(localStorage);
+	// 		navigate("/");
+	// 	}
+	// }, []);
+
+	const handleSubmit = async (e) => {
+		await e.preventDefault();
 		fetch(process.env.REACT_APP_API_LINK + "users/register", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(user),
-		}).then(() => {
-			navigate("/");
-		});
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					return response.json();
+				}
+				throw response;
+			})
+			.then((data) => {
+				const { token, newUser } = data;
+				localStorage.setItem("token", token);
+				localStorage.setItem("user", JSON.stringify(newUser));
+			})
+			// .then(() => {
+			// 	navigate("/");
+			// })
+			.catch((error) => {
+				console.error("Error sending data: ", error);
+				setError(error);
+			});
+		navigate(`/profilepage/:${JSON.parse(localStorage.getItem("user")).userid}`);
 	};
+
+	if (error) {
+		return "Error...";
+	}
 
 	return (
 		<div className={styles["register-page"]}>
@@ -39,24 +57,42 @@ const Register = () => {
 				<h2>Register</h2>
 				<form onSubmit={handleSubmit}>
 					<label>Email</label>
-					<input onChange={(e) => setEmail(e.target.value)} type="email" placeholder=" Email" required value={email}></input>
+					<input onChange={(e) => setUser({ ...user, email: e.target.value })} type="email" placeholder=" Email" required value={user.email}></input>
 
 					<label>First name</label>
-					<input onChange={(e) => setFirstName(e.target.value)} type="text" placeholder=" First name" required value={firstName}></input>
+					<input
+						onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+						type="text"
+						placeholder=" First name"
+						required
+						value={user.firstName}
+					></input>
 
 					<label>Last name</label>
-					<input onChange={(e) => setLastName(e.target.value)} type="text" placeholder=" Last name" required value={lastName}></input>
+					<input
+						onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+						type="text"
+						placeholder=" Last name"
+						required
+						value={user.lastName}
+					></input>
 
 					<label>Password</label>
-					<input onChange={(e) => setPassword(e.target.value)} type="password" placeholder=" Password" required value={password}></input>
+					<input
+						onChange={(e) => setUser({ ...user, password: e.target.value })}
+						type="password"
+						placeholder=" Password"
+						required
+						value={user.password}
+					></input>
 
 					<label>Confirm password</label>
 					<input
-						onChange={(e) => setConfirmPassword(e.target.value)}
+						onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
 						type="password"
 						placeholder=" Confirm password"
 						required
-						value={confirmPassword}
+						value={user.confirmPassword}
 					></input>
 					<div className={styles["checkbox-terms"]}>
 						<input type="checkbox" required></input>

@@ -9,6 +9,7 @@ import ViewPaper from "./ViewPaper";
 import ProfilePage from "./ProfilePage";
 import CreateConferencePage from "./CreateConferencePage";
 import ReviewPaperVersion from "./ReviewPaperVersion";
+import AddPaperVersionPage from "./AddPaperVersionPage";
 
 function App() {
 	return (
@@ -20,11 +21,12 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/conferencepage/:id" element={<ConferencePage />} />
-						<Route path="/conferencePapers" element={<ConferencePapers />} />
+						<Route path="/conferencepapers" element={<ConferencePapers />} />
 						<Route path="/reviewpaperversion" element={<ReviewPaperVersion />}></Route>
 						<Route path="/profilepage/:id" element={<ProfilePage />}></Route>
 						<Route path="/createconferencepage/" element={<CreateConferencePage />}></Route>
-						<Route path="/viewpaper/:id" element={<ViewPaper />}></Route>
+						<Route path="/viewpaper" element={<ViewPaper />}></Route>
+						<Route path="/addpaperversion" element={<AddPaperVersionPage />}></Route>
 					</Routes>
 				</div>
 			</Router>

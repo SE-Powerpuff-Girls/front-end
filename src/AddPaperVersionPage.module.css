@@ -1,0 +1,71 @@
+.add-paper-version-page {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.main-image {
+	background-image: url("../public/Img/thumbnailConferencesPage.webp");
+	height: 50%;
+	background-size: cover;
+	background-position: 20%;
+	background-repeat: no-repeat;
+}
+
+.add-paper-version-container {
+	width: 100%;
+	height: 50%;
+	background-color: #e5e5e5;
+	display: flex;
+}
+
+.add-version {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgb(202, 79, 79);
+	width: 50%;
+	border-radius: 20px;
+}
+
+.add-version form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-version textarea {
+	width: 100%;
+	max-width: 100%;
+	background-color: #c4c4c4;
+	height: 100%;
+	min-height: 50px;
+	border-radius: 20px;
+	padding: 5px;
+}
+
+.add-version input {
+	border-radius: 20px;
+	background-color: #cac8c8;
+	padding: 5px;
+}
+.add-version input:hover,
+.add-version input:focus {
+	background-color: #c4c4c4;
+}
+
+.label-input {
+	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
+.keywords {
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	width: 60%;
+	margin: auto;
+}

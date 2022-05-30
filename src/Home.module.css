@@ -55,11 +55,12 @@ body {
 
 .conferenceMore {
 	color: #686464;
+	margin-left: auto;
 	width: 15%;
 	padding: 10px;
 }
 
-.topics p {
+.topics .topic {
 	background-color: #c4c4c4;
 	border-radius: 25px;
 }
