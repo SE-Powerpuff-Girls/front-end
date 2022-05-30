@@ -19,7 +19,6 @@
 }
 
 .review-page-content {
-	padding: 2% 1% 2% 6%;
 	display: flex;
 	column-gap: 2%;
 	width: 100%;
@@ -27,6 +26,7 @@
 
 .paper-information {
 	width: 67.5%;
+	height: 100%;
 }
 
 #review-this-paper {
@@ -47,6 +47,7 @@
 	height: 500px;
 }
 
+.add-paper-version,
 .review-paper,
 .finish-evaluation {
 	display: flex;
@@ -95,7 +96,7 @@
 .review-paper div::-webkit-scrollbar {
 	display: none;
 }
-
+.add-paper-version button,
 .finish-evaluation button,
 .review-paper button {
 	background-color: #de0000;
@@ -105,10 +106,11 @@
 	width: 90%;
 	padding: 25px 25px;
 }
-
+.add-paper-version span,
 .finish-evaluation span {
 	font-size: 25px;
 }
+.add-paper-version,
 .finish-evaluation {
 	row-gap: 50px;
 }
@@ -120,4 +122,87 @@
 	margin-bottom: 10%;
 	height: 100%;
 	min-height: 100px;
+}
+
+.topics {
+	display: flex;
+}
+
+.topic {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	background-color: #ffffff;
+	font-weight: 400;
+	border-radius: 15px;
+	margin: 10px 15px 10px 0px;
+	padding: 3px 10px;
+}
+
+.modal {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 8% auto;
+	padding: 2% 5%;
+	height: 40%;
+	width: 40%;
+	background-color: rgb(223, 213, 213);
+	border-radius: 30px;
+	row-gap: 5%;
+}
+
+.modal-container textarea {
+	border-radius: 20px;
+	padding: 5px;
+}
+.modal-container textarea:hover,
+.modal-container textarea:focus {
+	background-color: #c4c4c4;
+}
+
+.modal-container button {
+	border-radius: 20px;
+	background-color: #b40b0b;
+	width: fit-content;
+	border: none;
+	color: white;
+	font-weight: bold;
+	padding: 7px 15px;
+}
+
+.modal-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: bold;
+}
+
+.label-input {
+	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
+
+.review-page-all {
+	display: flex;
+	flex-direction: column;
+	padding: 2% 1% 2% 6%;
+}
+
+.evaluations {
+	display: block;
 }

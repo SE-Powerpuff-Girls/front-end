@@ -10,21 +10,13 @@ const ProfilePage = () => {
 	id = id.replace(":", "");
 
 	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 
-	const [readData, setReadData] = useState(false);
-
-	const [disabled, setDisabled] = useState(() => {
+	const [disabled] = useState(() => {
 		return !(id === JSON.parse(localStorage.getItem("user")).userid);
 	});
 
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [title, setTitle] = useState("");
-	const [gender, setGender] = useState("");
-	const [nationality, setNationality] = useState("");
-	const [address, setAddress] = useState("");
+	const [user, setUser] = useState({ firstname: "", lastname: "", email: "", title: "", gender: "", nationality: "", address: "", photolink: "" });
 
 	const [topics, setTopics] = useState([]);
 
@@ -32,80 +24,89 @@ const ProfilePage = () => {
 
 	const [newTopic, setNewtopic] = useState("");
 
+	const [reloadTopics, setReloadTopics] = useState(true);
+
+	const [selectedFile, setSelectedFile] = useState("");
+
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!readData) {
-			setReadData(true);
-			setLoading(false);
-			fetch(`${process.env.REACT_APP_API_LINK}users/${id}`, {
-				method: "GET",
-				headers: { "Content-Type": "application/json" },
-			})
-				.then((response) => {
-					if (response.status === 200) {
-						return response.json();
-					}
-					throw response;
-				})
-				.then((data) => {
-					const information = data;
-					setFirstName(information.firstname);
-					setLastName(information.lastname);
-					setEmail(information.email);
-					if (information.title) {
-						setTitle(information.title);
-					}
-					if (information.gender) {
-						setGender(information.gender);
-					}
-					if (information.nationality) {
-						setNationality(information.nationality);
-					}
-					if (information.address) {
-						setAddress(information.address);
-					}
-				})
-				.catch((error) => {
-					console.error("Error fetching data: ", error);
-					setError(error);
-				})
-				.finally(() => {
-					setLoading(false);
-				});
-			fetch(`${process.env.REACT_APP_API_LINK}users/:${id}/topics`, {
-				method: "GET",
-				headers: { "Content-Type": "application/json" },
-			}).then((response) => {
-				if (response.status === 200) {
-					response.json().then((data) => {
-						setTopics(data);
-					});
-				}
-			});
-		}
-	}, [rendModal, readData, id]);
+	const [loadData, setLoadData] = useState(false);
 
-	if (loading) {
-		return "Loading...";
-	}
-	if (error) {
-		return "Error...";
-	}
-	const handleSubmitUpdate = (e) => {
+	useEffect(() => {
+		fetch(`${process.env.REACT_APP_API_LINK}users/${id}`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				}
+				throw response;
+			})
+			.then((data) => {
+				const information = data;
+				setUser(information);
+			})
+			.catch((error) => {
+				console.error("Error fetching data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, [loadData]);
+	useEffect(() => {
+		fetch(`${process.env.REACT_APP_API_LINK}users/${id}/topics`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					return response.json();
+				}
+				throw response;
+			})
+			.then((data) => {
+				setTopics(data);
+			})
+			.catch((error) => {
+				console.error("Error fetching data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, [reloadTopics]);
+
+	const handleSubmitUpdate = async (e) => {
 		e.preventDefault();
-		const updateUser = { email, firstName, lastName, gender, title, nationality, address };
 		const token = localStorage.getItem("token");
 		const userid = JSON.parse(localStorage.getItem("user")).userid;
-		fetch(`${process.env.REACT_APP_API_LINK}users/${userid}`, {
+		const formData = new FormData();
+		for (const key in user) {
+			formData.append(key, user[key]);
+		}
+		formData.append("file", selectedFile);
+		await fetch(`${process.env.REACT_APP_API_LINK}users/${userid}`, {
 			method: "PUT",
-			headers: { "Content-Type": "application/json", authorization: `Bearer ${token}`, upload: null },
-			body: JSON.stringify(updateUser),
-		}).then((response) => {
-			if (response.status === 201) {
-				console.log("Update sucessful");
-			}
-		});
+			headers: { authorization: `Bearer ${token}`, upload: null },
+			body: formData,
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					console.log("Update sucessful");
+				} else {
+					throw response;
+				}
+			})
+			.catch((error) => {
+				console.error("Error sending data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+		setLoadData(!loadData);
 	};
 
 	function handleSubmitDelete(e) {
@@ -115,13 +116,23 @@ const ProfilePage = () => {
 		fetch(`${process.env.REACT_APP_API_LINK}users/${userid}`, {
 			method: "DELETE",
 			headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-		}).then((response) => {
-			if (response.status === 201) {
-				console.log("User deleted!");
-				localStorage.clear();
-				navigate("/login");
-			}
-		});
+		})
+			.then((response) => {
+				if (response.status === 200) {
+					console.log("User deleted!");
+					localStorage.clear();
+					navigate("/login");
+				} else {
+					throw response;
+				}
+			})
+			.catch((error) => {
+				console.error("Error deleting data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}
 
 	const handleRendModal = (e) => {
@@ -139,12 +150,22 @@ const ProfilePage = () => {
 			method: "POST",
 			headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
 			body: JSON.stringify({ name }),
-		}).then((response) => {
-			if (response.status == 201) {
-				console.log("Topic added successfully!");
-				setReadData(false);
-			}
-		});
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					console.log("Topic added successfully!");
+					setReloadTopics(!reloadTopics);
+				} else {
+					throw response;
+				}
+			})
+			.catch((error) => {
+				console.error("Error sending data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 		setRendModal(!rendModal);
 	};
 
@@ -154,13 +175,31 @@ const ProfilePage = () => {
 		fetch(`${process.env.REACT_APP_API_LINK}users/${userid}/topics/${topicID}`, {
 			method: "DELETE",
 			headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
-		}).then((response) => {
-			if (response.status == 201) {
-				console.log("Topic deleted!");
-				setReadData(false);
-			}
-		});
+		})
+			.then((response) => {
+				if (response.status === 201) {
+					console.log("Topic deleted!");
+					setReloadTopics(!reloadTopics);
+				} else {
+					throw response;
+				}
+			})
+			.catch((error) => {
+				console.error("Error deleting data: ", error);
+				setError(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+		setReloadTopics(!reloadTopics);
 	};
+	console.log(user);
+	if (isLoading) {
+		return "Loading...";
+	}
+	if (error) {
+		return "Error...";
+	}
 
 	return (
 		<div className={styles["profile-page"]}>
@@ -186,17 +225,19 @@ const ProfilePage = () => {
 			<div className={styles["profile-page-container"]}>
 				<div className={styles["profile-container"]}>
 					<div className={styles["profile-header"]}>
-						<div className={styles["profile-picture"]}></div>
+						<div className={styles["profile-picture"]}>
+							<img src={`${user.photolink}` || `${process.env.PUBLIC_URL}/Img/profilePicture.jpg`} alt="" height="100%" width="100%"></img>
+						</div>
 						<div className={styles["name-and-interests"]}>
 							<span>
-								{firstName} {lastName}
+								{user.firstname} {user.lastname}
 							</span>
 							<br></br>
 							<br></br>
 							Interested in:
 							<div className={styles["tags"]}>
 								{topics.map((topic) => (
-									<div className={styles["tag"]}>
+									<div key={topic.usertopicid} className={styles["tag"]}>
 										{topic.name}
 										{!disabled && (
 											<span
@@ -222,31 +263,69 @@ const ProfilePage = () => {
 						<form onSubmit={handleSubmitUpdate} className={styles["form-update-profile-information"]}>
 							<div className={styles["label-input"]}>
 								<label>Email: </label>
-								<input disabled={disabled} onChange={(e) => setEmail(e.target.value)} type="email" name="email" required value={email}></input>
+								<input
+									disabled
+									onChange={(e) => setUser({ ...user, email: e.target.value })}
+									type="email"
+									name="email"
+									required
+									value={user.email || ""}
+								></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>First name: </label>
-								<input disabled={disabled} onChange={(e) => setFirstName(e.target.value)} type="text" required value={firstName}></input>
+								<input
+									disabled={disabled}
+									onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+									type="text"
+									required
+									value={user.firstname || ""}
+								></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>Last name: </label>
-								<input disabled={disabled} onChange={(e) => setLastName(e.target.value)} type="text" required value={lastName}></input>
+								<input
+									disabled={disabled}
+									onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+									type="text"
+									required
+									value={user.lastname || ""}
+								></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>Title: </label>
-								<input disabled={disabled} onChange={(e) => setTitle(e.target.value)} type="text" value={title}></input>
+								<input disabled={disabled} onChange={(e) => setUser({ ...user, title: e.target.value })} type="text" value={user.title || ""}></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>Gender: </label>
-								<input disabled={disabled} onChange={(e) => setGender(e.target.value)} type="text" value={gender}></input>
+								<input
+									disabled={disabled}
+									onChange={(e) => setUser({ ...user, gender: e.target.value })}
+									type="text"
+									value={user.gender || ""}
+								></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>Nationality: </label>
-								<input disabled={disabled} onChange={(e) => setNationality(e.target.value)} type="text" value={nationality}></input>
+								<input
+									disabled={disabled}
+									onChange={(e) => setUser({ ...user, nationality: e.target.value })}
+									type="text"
+									value={user.nationality || ""}
+								></input>
 							</div>
 							<div className={styles["label-input"]}>
 								<label>Address: </label>
-								<input disabled={disabled} onChange={(e) => setAddress(e.target.value)} type="text" value={address}></input>
+								<input
+									disabled={disabled}
+									onChange={(e) => setUser({ ...user, address: e.target.value })}
+									type="text"
+									value={user.address || ""}
+								></input>
+							</div>
+							<div className={styles["lable-input"]}>
+								<label>Image: </label>
+								<input type="file" accept="image/*" onChange={(e) => setSelectedFile(e.target.files[0])}></input>
 							</div>
 							<div className={styles["buttons"]}>
 								{!disabled && <button type="submit">Save</button>}

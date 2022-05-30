@@ -19,8 +19,9 @@
 }
 
 .conference-image {
-	background-image: url("../public/Img/thumbnailConference.jpg");
+	/* background-image: url("../public/Img/thumbnailConference.jpg"); */
 	background-size: cover;
+	overflow: hidden;
 	height: 100%;
 	width: 30%;
 	border: 1px solid var(--thumbnail-border-color);
@@ -94,7 +95,7 @@
 }
 
 .conference-details {
-	height: 35%;
+	height: 30%;
 	margin: -6% 5% 0;
 	display: flex;
 	align-items: flex-end;
@@ -165,10 +166,12 @@
 	flex-direction: column;
 	align-items: center;
 	overflow: hidden;
-	background-color: #b40b0b;
-	color: white;
+	border: 4px solid #b40b0b;
+	background-color: white;
+	color: black;
 	border-radius: 25px;
-	padding: 2%;
+	padding: 60px;
+	padding-top: 10px;
 }
 
 .conference-chairs {
@@ -196,7 +199,8 @@
 }
 
 .action-buttons {
-	margin-top: 2%;
+	margin-top: 4%;
+	margin-bottom: 4%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -274,4 +278,119 @@
 	flex-direction: column;
 	align-items: center;
 	font-weight: bold;
+}
+
+.edit-conference-modal {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 8% auto;
+	padding: 2% 5%;
+	height: fit-content;
+	width: 40%;
+	background-color: rgb(223, 213, 213);
+	border-radius: 30px;
+	row-gap: 15px;
+}
+
+.edit-conference-modal form {
+	min-height: 60%;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: bold;
+	row-gap: 4%;
+}
+
+.edit-conference-modal input {
+	border-radius: 20px;
+	background-color: var(--background-color-input);
+	padding: 5px;
+}
+.edit-conference-modal input:hover,
+.edit-conference-modal input:focus {
+	background-color: #c4c4c4;
+}
+
+.label-input {
+	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
+
+.label {
+	font-size: 20px;
+}
+
+.pending-papers-container button,
+.edit-conference-modal button {
+	border-radius: 20px;
+	background-color: #b40b0b;
+	width: fit-content;
+	border: none;
+	color: white;
+	font-weight: bold;
+	padding: 7px 15px;
+}
+
+.edit-conference-modal textarea {
+	width: 100%;
+	max-width: 100%;
+	background-color: #c4c4c4;
+	height: 100%;
+	min-height: 50px;
+	border-radius: 20px;
+	padding: 5px;
+}
+
+.selected-paper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 90%;
+	align-items: center;
+}
+
+.pending-papers {
+	height: 90%;
+	row-gap: 5%;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pending-papers-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 3% auto;
+	padding: 2% 5%;
+	height: 90%;
+	width: 80%;
+	background-color: rgb(223, 213, 213);
+	border-radius: 30px;
+	row-gap: 5%;
+}
+
+.paper-content {
+	background-color: white;
+	overflow: scroll;
+	width: 90%;
+	min-height: 100%;
+}
+
+.deadlines {
+	display: flex;
+	font-size: 10px;
+	column-gap: 1%;
 }

@@ -41,7 +41,7 @@ const Navbar = () => {
 					</Link>
 				)}
 				{isLoggedIn && (
-					<Link to={`/profilePage/:${JSON.parse(localStorage.getItem("user")).userid}`} className={styles["login-button"]}>
+					<Link to={`/profilepage/:${JSON.parse(localStorage.getItem("user")).userid}`} className={styles["login-button"]}>
 						{JSON.parse(localStorage.getItem("user")).firstname}
 					</Link>
 				)}
