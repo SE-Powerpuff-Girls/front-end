@@ -51,7 +51,7 @@ const OneConference = ({ conference }) => {
 	return (
 		<div className={styles["oneConference"]}>
 			<div className={styles["conferenceImage"]}>
-				<img src={Image} />
+				<img src={`${conference.photolink}` || `${process.env.PUBLIC_URL}/Img/thumbnailConference.jpg`} alt="Image" height="100%" width="100%"></img>
 			</div>
 			<div className={styles["conferenceDetails"]}>
 				<p>{conference.name}</p>
